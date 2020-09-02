@@ -4,19 +4,15 @@ Mayank Hirani
 mayank.hirani@icloud.com
 """
 
-# Read through 100 patterns of length 8-12
-# qb = 0.25 (chance of each base appearing in a position)
-# Make one-hot matrices of the patterns
-# Create a profile matrix
-# Make a PWM for the profile matrix
-# Calculate the Information Content from the PWM
-
+# An advanced algorithm for finding patterns, it first creates a one hot matrix,
+# turns it into a profile matrix, makes that into a position weight matrix,
+# and finally calculates the IC from it. This does this for every segment in every
+# sequence, and the highest IC generated is saved as the found pattern.
 
 import functions
 from importlib import reload
 reload(functions)
 from functions import *
-
 
 import random
 
@@ -29,7 +25,20 @@ class IC_Calculator():
 		# Chance of each base appearing in a position
 		self.qb = 0.25
 
+	# Run all functions to calculate the Information Content
+	def run(self):
 		
+		self.create_sequences()
+		# self.write_patterns()
+		# self.create_one_hot_matrices()
+		# self.create_profile_matrix()
+		# self.create_pwm()
+		# self.calculate_ic()
+		# self.create_sequences()
+		self.create_pairs()
+		
+
+	
 	# Write the patterns to a file
 	def write_patterns(self):
 
@@ -50,16 +59,16 @@ class IC_Calculator():
 	# Read through a file and create a dictionary with the one-hot matrices
 	def create_one_hot_matrices(self):
 
-		self.matrices_dict = functions.create_one_hot_matrices('patterns.txt')
+		self.matrices_dict = functions.create_one_hot_matrices('sequences.txt')
 
-		print(self.matrices_dict)
+		#print(self.matrices_dict)
 
 	# Create a profile matrix from the one-hot matrix
 	def create_profile_matrix(self):
 
 		self.profile_matrix = functions.create_profile_matrix(self.matrices_dict)		
 
-		print(self.profile_matrix)
+		#print(self.profile_matrix)
 
 	# Create a pwm from the profile matrix
 	def create_pwm(self):
@@ -75,14 +84,21 @@ class IC_Calculator():
 
 		print(self.ic)
 
+	# Write the sequences to run the calculations
+	def create_sequences(self):
 
+		functions.create_sequences()
+
+	# Iterate through each segment of each sequence and calculate the ic
+	def create_pairs(self):
+
+		functions.find_pattern('sequences.txt')
+
+
+	
 ic_calculator = IC_Calculator()
 
-ic_calculator.write_patterns()
-ic_calculator.create_one_hot_matrices()
-ic_calculator.create_profile_matrix()
-ic_calculator.create_pwm()
-ic_calculator.calculate_ic()
+ic_calculator.run()
 
 
 
