@@ -8,11 +8,8 @@ mayank.hirani@icloud.com
 
 
 Things to do by next week
-(Written July 29)
-• Reformat the PWM so it is same as profile matrix and calculate information content
-• Read the sequences --> Make one-hot matrixes of them --> Create profile matrix --> Make PWM from profile matrix --> Calculate Information content
-• 100 Sequences of length 100, pattern length = 10, 0-3 errors --> write sequences in file --> read sequences --> Calculate best information content from the 2 sequences
-• Deal with zeros from Wbk
+(Written September 2)
+Email when I want to continue in December
 
 
 Algorithm:
